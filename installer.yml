@@ -1,0 +1,31 @@
+name: Grand Fantasia
+game_slug: Grand-Fantasia
+version: Grand Fantasia Installer 2023
+slug: grand-fantasia-installer
+runner: wine
+
+script:
+  game:
+    exe: $GAMEDIR/drive_c/X-Legend/GrandFantasia$INPUT_LANG/Launcher.exe
+    args:
+    prefix: $GAMEDIR
+    arch: win64
+    working_dir:
+  files:
+    - installer: 'N/A:Select the game setup file'
+  installer:
+    - input_menu:
+        description: 'Choose the game language:'
+        id: LANG
+        options:
+          - PT: Portuguese
+          - EN: English
+          - FR: French
+          - ES: Spanish
+        preselect: pt
+    - task:
+        executable: installer
+        name: wineexec
+  wine:
+    version: lutris-7.2-2-x86_64
+    Desktop: false
